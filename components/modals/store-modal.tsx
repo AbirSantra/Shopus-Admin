@@ -15,6 +15,9 @@ import {
 } from "../ui/form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { useState } from "react";
+import axios, { AxiosError } from "axios";
+import { toast } from "../ui/use-toast";
 
 const formValidation = z.object({
   name: z.string().min(1, "Store Name must not be empty"),
@@ -22,6 +25,8 @@ const formValidation = z.object({
 
 export const StoreModal = () => {
   const storeModal = useStoreModal();
+
+  const [loading, setLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formValidation>>({
     resolver: zodResolver(formValidation),
@@ -31,7 +36,27 @@ export const StoreModal = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof formValidation>) => {
-    console.log(values);
+    try {
+      setLoading(true);
+
+      const response = await axios.post("/api/stores", values);
+
+      toast({
+        title: "Store created successfully!",
+        description: `Your store ${response.data.name} has been created!`,
+      });
+    } catch (error) {
+      console.log(error);
+      if (error instanceof AxiosError) {
+        toast({
+          title: "Failed to create store!",
+          description: `${error.response?.data}`,
+        });
+      }
+    } finally {
+      form.reset();
+      setLoading(false);
+    }
   };
 
   return (
@@ -54,6 +79,7 @@ export const StoreModal = () => {
                       <Input
                         placeholder="Enter your store name"
                         label="Store Name"
+                        disabled={loading}
                         {...field}
                       />
                     </FormControl>
@@ -63,11 +89,15 @@ export const StoreModal = () => {
               />
 
               <div className="pt-6 space-x-2 flex items-center justify-end w-full">
-                <Button variant={"outline"} onClick={storeModal.onClose}>
+                <Button
+                  variant={"outline"}
+                  onClick={storeModal.onClose}
+                  disabled={loading}
+                >
                   Cancel
                 </Button>
-                <Button type="submit" variant={"default"}>
-                  Continue
+                <Button type="submit" variant={"default"} disabled={loading}>
+                  {loading ? "Loading..." : "Continue"}
                 </Button>
               </div>
             </form>
