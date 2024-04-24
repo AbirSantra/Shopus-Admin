@@ -18,6 +18,7 @@ import { Button } from "../ui/button";
 import { useState } from "react";
 import axios, { AxiosError } from "axios";
 import { toast } from "../ui/use-toast";
+import { redirect } from "next/navigation";
 
 const formValidation = z.object({
   name: z.string().min(1, "Store Name must not be empty"),
@@ -41,10 +42,7 @@ export const StoreModal = () => {
 
       const response = await axios.post("/api/stores", values);
 
-      toast({
-        title: "Store created successfully!",
-        description: `Your store ${response.data.name} has been created!`,
-      });
+      window.location.assign(`/${response.data.id}`);
     } catch (error) {
       console.log(error);
       if (error instanceof AxiosError) {
@@ -54,7 +52,6 @@ export const StoreModal = () => {
         });
       }
     } finally {
-      form.reset();
       setLoading(false);
     }
   };
@@ -62,7 +59,7 @@ export const StoreModal = () => {
   return (
     <Modal
       title="Create your store"
-      description="Add a new store to start selling!"
+      description="Add a new store to start selling"
       isOpen={storeModal.isOpen}
       onClose={storeModal.onClose}
     >
