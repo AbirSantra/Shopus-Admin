@@ -76,20 +76,23 @@ const StoreSwitcher = ({ className, items = [] }: StoreSwitcherProps) => {
       <PopoverContent className="w-[200px] p-0">
         <Command>
           <CommandList>
-            <CommandInput placeholder="Search store" />
+            <CommandInput placeholder="Search Store" />
             <CommandEmpty>No store found.</CommandEmpty>
-            <CommandGroup heading="Your stores">
+            <CommandGroup heading="Your Stores">
               {formattedItems.map((store) => (
                 <CommandItem
                   key={store.value}
                   onSelect={() => onStoreChange(store)}
-                  className="text-sm"
+                  className={cn(
+                    currentStore?.value === store.value && "font-semibold",
+                    "text-sm"
+                  )}
                 >
                   <StoreIcon className="mr-2 h-4 w-4" />
                   {store.label}
                   <CheckIcon
                     className={cn(
-                      "ml-auto h-4 w-4",
+                      "ml-auto h-4 w-4 text-orange-500",
                       currentStore?.value === store.value
                         ? "opacity-100"
                         : "opacity-0"

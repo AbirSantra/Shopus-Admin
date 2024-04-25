@@ -26,7 +26,7 @@ const MainNav = ({
           key={route.href}
           href={route.href}
           className={cn(
-            "text-sm font-medium transition-colors hover:text-orange-600",
+            "text-sm font-medium transition-colors ease-in-out hover:text-orange-600",
             route.active
               ? "text-orange-600 dark:text-white"
               : "text-muted-foreground"

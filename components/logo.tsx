@@ -7,12 +7,14 @@ interface LogoProps {
   className?: string;
   logoHeight?: number;
   logoWidth?: number;
+  iconOnly?: boolean;
 }
 
 export default function Logo({
   className,
   logoHeight = 32,
   logoWidth = 32,
+  iconOnly,
 }: LogoProps) {
   return (
     <Link
@@ -28,7 +30,7 @@ export default function Logo({
         height={logoHeight}
         width={logoWidth}
       />
-      <span>Shopus</span>
+      {!iconOnly && <span>Shopus</span>}
     </Link>
   );
 }

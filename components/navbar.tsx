@@ -3,6 +3,7 @@ import MainNav from "./main-nav";
 import StoreSwitcher from "./store-switcher";
 import { redirect } from "next/navigation";
 import prismadb from "@/lib/prismadb";
+import Logo from "./logo";
 
 const Navbar = async () => {
   const { userId } = auth();
@@ -19,9 +20,10 @@ const Navbar = async () => {
 
   return (
     <div className="border-b">
-      <div className="flex h-16 items-center px-4">
+      <div className="flex h-16 items-center px-4 gap-4">
+        <Logo iconOnly />
         <StoreSwitcher items={stores} />
-        <MainNav className="mx-6" />
+        <MainNav className="" />
         <div className="ml-auto flex items-center space-x-4">
           <UserButton afterSignOutUrl="/" />
         </div>
