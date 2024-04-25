@@ -15,6 +15,8 @@ import axios, { AxiosError } from "axios";
 import { toast } from "./ui/use-toast";
 import { useParams, useRouter } from "next/navigation";
 import { AlertModal } from "./modals/alert-modal";
+import { ApiAlert } from "./ui/api-alert";
+import { useOrigin } from "@/hooks/use-origin";
 
 interface SettingsFormProps {
   initialData: Store;
@@ -32,6 +34,7 @@ const SettingsForm = ({ initialData }: SettingsFormProps) => {
 
   const params = useParams();
   const router = useRouter();
+  const origin = useOrigin();
 
   const form = useForm<SettingsFormValues>({
     resolver: zodResolver(formValidation),
@@ -138,6 +141,12 @@ const SettingsForm = ({ initialData }: SettingsFormProps) => {
           </Button>
         </form>
       </Form>
+      <Separator />
+      <ApiAlert
+        title="NEXT_PUBLIC_API_URL"
+        description={`${origin}/api/${params.storeId}`}
+        variant="admin"
+      />
     </>
   );
 };
