@@ -22,8 +22,6 @@ import axios, { AxiosError } from "axios";
 import { toast } from "./ui/use-toast";
 import { useParams, useRouter } from "next/navigation";
 import { AlertModal } from "./modals/alert-modal";
-import { ApiAlert } from "./ui/api-alert";
-import { useOrigin } from "@/hooks/use-origin";
 import ImageUpload from "./ui/image-upload";
 
 const formValidation = z.object({
@@ -43,7 +41,6 @@ const BillboardForm = ({ initialData }: BillboardFormProps) => {
 
   const params = useParams();
   const router = useRouter();
-  const origin = useOrigin();
 
   const title = initialData ? "Edit Billboard" : "Create Billboard";
   const description = initialData
