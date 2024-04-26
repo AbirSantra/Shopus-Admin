@@ -7,6 +7,7 @@ import { Separator } from "./ui/separator";
 import { useParams, useRouter } from "next/navigation";
 import { BillboardColumns, columns } from "./billboard-columns";
 import { DataTable } from "./ui/data-table";
+import { ApiList } from "./ui/api-list";
 
 interface BillboardClientProps {
   data: BillboardColumns[];
@@ -32,6 +33,9 @@ const BillboardClient = ({ data }: BillboardClientProps) => {
       </div>
       <Separator />
       <DataTable columns={columns} data={data} searchKey="label" />
+      <Heading title="API" description="API calls for Billboards" />
+      <Separator />
+      <ApiList entityName="billboards" entityIdName="billboardId" />
     </>
   );
 };
