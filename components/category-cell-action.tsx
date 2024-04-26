@@ -36,25 +36,24 @@ export const CategoryCellAction = ({ data }: CategoryCellActionProps) => {
     navigator.clipboard.writeText(id);
     toast({
       title: "Copied to Clipboard!",
-      description: "Billboard ID has been copied to your clipboard",
+      description: "Category Id has been copied to your clipboard",
     });
   };
 
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`/api/${params.storeId}/billboards/${data.id}`);
+      await axios.delete(`/api/${params.storeId}/categories/${data.id}`);
       router.refresh();
       toast({
-        title: "Billboard deleted successfully!",
-        description: "Your store has been deleted.",
+        title: "Category deleted successfully!",
+        description: "Your category has been deleted.",
       });
     } catch (error) {
       console.log(error);
       toast({
-        title: "Failed to delete billboard!",
-        description:
-          "Make sure to remove all categories using this billboard first",
+        title: "Failed to delete category!",
+        description: "Make sure to remove all products of this category first",
       });
     } finally {
       setLoading(false);
@@ -84,7 +83,7 @@ export const CategoryCellAction = ({ data }: CategoryCellActionProps) => {
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() =>
-              router.push(`/${params.storeId}/billboards/${data.id}`)
+              router.push(`/${params.storeId}/categories/${data.id}`)
             }
           >
             <EditIcon className="mr-2 h-4 w-4" /> Edit

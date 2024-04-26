@@ -80,8 +80,8 @@ const CategoryForm = ({ initialData, billboards }: CategoryFormProps) => {
       } else {
         await axios.post(`/api/${params.storeId}/categories`, data);
       }
-      router.refresh();
       router.push(`/${params.storeId}/categories`);
+      router.refresh();
       toast({
         title: toastTitle,
         description: toastDesc,

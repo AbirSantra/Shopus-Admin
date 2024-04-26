@@ -8,18 +8,18 @@ export async function POST(
 ) {
   try {
     const { userId } = auth();
-    const { label, imageUrl } = await req.json();
+    const { name, billboardId } = await req.json();
 
     if (!userId) {
       return new NextResponse("Unauthenticated", { status: 401 });
     }
 
-    if (!label) {
-      return new NextResponse("Missing field: label", { status: 400 });
+    if (!name) {
+      return new NextResponse("Missing field: name", { status: 400 });
     }
 
-    if (!imageUrl) {
-      return new NextResponse("Missing field: imageUrl", { status: 400 });
+    if (!billboardId) {
+      return new NextResponse("Missing field: billboardId", { status: 400 });
     }
 
     if (!params.storeId) {
@@ -37,17 +37,17 @@ export async function POST(
       return new NextResponse("Unauthorized", { status: 403 });
     }
 
-    const billboard = await prismadb.billboard.create({
+    const category = await prismadb.category.create({
       data: {
-        label: label,
-        imageUrl: imageUrl,
+        name: name,
+        billboardId: billboardId,
         storeId: params.storeId,
       },
     });
 
-    return NextResponse.json(billboard);
+    return NextResponse.json(category);
   } catch (error) {
-    console.log("[BILLBOARDS-POST] ", error);
+    console.log("[CATEGORIES-POST] ", error);
     return new NextResponse("Internal Server Error", { status: 500 });
   }
 }
@@ -61,15 +61,15 @@ export async function GET(
       return new NextResponse("Missing param: storeId", { status: 400 });
     }
 
-    const billboards = await prismadb.billboard.findMany({
+    const categories = await prismadb.category.findMany({
       where: {
         storeId: params.storeId,
       },
     });
 
-    return NextResponse.json(billboards);
+    return NextResponse.json(categories);
   } catch (error) {
-    console.log("[BILLBOARDS-GET] ", error);
+    console.log("[CATEGORIES-GET] ", error);
     return new NextResponse("Internal Server Error", { status: 500 });
   }
 }
