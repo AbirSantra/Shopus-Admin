@@ -29,6 +29,8 @@ const ImageUpload = ({
     onChange(result.info.secure_url);
   };
 
+  console.log(value);
+
   if (!isMounted) {
     return null;
   }
@@ -55,7 +57,7 @@ const ImageUpload = ({
           </div>
         ))}
       </div>
-      <CldUploadWidget onSuccess={onUpload} uploadPreset="ltwuw3ux">
+      <CldUploadWidget onUpload={onUpload} uploadPreset="ltwuw3ux">
         {({ open }) => {
           const onClick = () => {
             open();
