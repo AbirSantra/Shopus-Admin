@@ -28,9 +28,11 @@ export default async function Dashboard({
   }
 
   return (
-    <>
-      <Navbar />
-      {children}
-    </>
+    <div className="flex min-h-screen w-full">
+      <aside className="fixed inset-y-0 left-0 z-10 hidden w-16 flex-col border-r bg-background sm:flex">
+        <Navbar />
+      </aside>
+      <main className="sm:ml-16 w-full">{children}</main>
+    </div>
   );
 }

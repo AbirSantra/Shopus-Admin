@@ -11,6 +11,8 @@ const DashboardPage = async ({ params }: DashboardPageProps) => {
     },
   });
 
-  return <div className="font-bold text-xl">Active Store: {store?.name}</div>;
+  return (
+    <div className="font-bold text-xl w-full">Active Store: {store?.name}</div>
+  );
 };
 export default DashboardPage;

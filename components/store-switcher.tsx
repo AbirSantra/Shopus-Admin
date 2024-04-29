@@ -59,21 +59,15 @@ const StoreSwitcher = ({ className, items = [] }: StoreSwitcherProps) => {
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
-        <Button
-          variant={"outline"}
-          size={"sm"}
-          role="combobox"
-          aria-expanded={open}
-          aria-label="Select a store"
-          className={cn("w-[200px] justify-between", className)}
-        >
-          <StoreIcon className="mr-2 h-4 w-4" />
-          <p className="line-clamp-1">{currentStore?.label}</p>
-          <ChevronsUpDownIcon className="ml-auto w-4 h-4 shrink-0 opacity-50" />
-        </Button>
+      <PopoverTrigger
+        role="combobox"
+        aria-expanded={open}
+        aria-label="Select a store"
+        className={cn("text-muted-foreground", className)}
+      >
+        <StoreIcon />
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent className="min-w-[200px] p-0" align="start">
         <Command>
           <CommandList>
             <CommandInput placeholder="Search Store" />

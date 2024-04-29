@@ -29,6 +29,7 @@ export default function Logo({
         alt="shopus-logo"
         height={logoHeight}
         width={logoWidth}
+        className="shrink-0"
       />
       {!iconOnly && <span>Shopus</span>}
     </Link>

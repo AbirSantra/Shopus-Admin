@@ -19,14 +19,12 @@ const Navbar = async () => {
   });
 
   return (
-    <div className="border-b">
-      <div className="flex h-16 items-center px-4 gap-4 lg:gap-6">
-        <Logo iconOnly />
+    <div className="h-full flex flex-col items-center p-4 gap-8 border-r">
+      <Logo iconOnly logoHeight={32} logoWidth={32} />
+      <MainNav className="" />
+      <div className="mt-auto flex flex-col justify-center items-center gap-8">
         <StoreSwitcher items={stores} />
-        <MainNav className="" />
-        <div className="ml-auto flex items-center space-x-4">
-          <UserButton afterSignOutUrl="/" />
-        </div>
+        <UserButton afterSignOutUrl="/" />
       </div>
     </div>
   );
