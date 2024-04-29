@@ -23,6 +23,7 @@ import {
   CommandList,
   CommandSeparator,
 } from "./ui/command";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<
   typeof PopoverTrigger
@@ -63,9 +64,19 @@ const StoreSwitcher = ({ className, items = [] }: StoreSwitcherProps) => {
         role="combobox"
         aria-expanded={open}
         aria-label="Select a store"
-        className={cn("text-muted-foreground", className)}
+        className={cn(
+          "text-muted-foreground flex justify-center items-center",
+          className
+        )}
       >
-        <StoreIcon />
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <StoreIcon />
+          </TooltipTrigger>
+          <TooltipContent side="right">
+            <p>Switch Store</p>
+          </TooltipContent>
+        </Tooltip>
       </PopoverTrigger>
       <PopoverContent className="min-w-[200px] p-0" align="start">
         <Command>

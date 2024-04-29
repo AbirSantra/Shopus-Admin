@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 const MainNav = ({
   className,
@@ -59,20 +60,26 @@ const MainNav = ({
   ];
 
   return (
-    <nav className={cn("flex flex-col items-center space-y-8", className)}>
+    <nav className={cn("flex flex-col items-center gap-6", className)}>
       {routes.map((route) => (
-        <Link
-          key={route.href}
-          href={route.href}
-          className={cn(
-            "text-sm font-medium transition-colors ease-in-out hover:text-orange-600",
-            route.active
-              ? "text-orange-600 dark:text-white"
-              : "text-muted-foreground"
-          )}
-        >
-          {route.icon}
-        </Link>
+        <Tooltip key={route.href}>
+          <TooltipTrigger asChild>
+            <Link
+              href={route.href}
+              className={cn(
+                "text-sm font-medium transition-colors ease-in-out hover:text-orange-600 flex justify-center items-center w-10 h-10 rounded-sm",
+                route.active
+                  ? "text-orange-600 dark:text-white bg-orange-50"
+                  : "text-muted-foreground"
+              )}
+            >
+              {route.icon}
+            </Link>
+          </TooltipTrigger>
+          <TooltipContent side="right">
+            <p>{route.label}</p>
+          </TooltipContent>
+        </Tooltip>
       ))}
     </nav>
   );
