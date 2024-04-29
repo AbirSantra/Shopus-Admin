@@ -6,8 +6,10 @@ import {
   LayoutGridIcon,
   MegaphoneIcon,
   PackageIcon,
+  QrCodeIcon,
   SettingsIcon,
   ShoppingCartIcon,
+  UsersRoundIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
@@ -50,6 +52,18 @@ const MainNav = ({
       label: "Billboards",
       active: pathname === `/${params.storeId}/billboards`,
       icon: <MegaphoneIcon />,
+    },
+    {
+      href: `/${params.storeId}/customers`,
+      label: "Customers",
+      active: pathname === `/${params.storeId}/customers`,
+      icon: <UsersRoundIcon />,
+    },
+    {
+      href: `/${params.storeId}/warranty`,
+      label: "Warranties",
+      active: pathname === `/${params.storeId}/warranty`,
+      icon: <QrCodeIcon />,
     },
     {
       href: `/${params.storeId}/settings`,
