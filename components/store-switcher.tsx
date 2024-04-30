@@ -2,7 +2,7 @@
 
 import { Store } from "@prisma/client";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { useStoreModal } from "@/hooks/use-store-modal";
+import { useModal } from "@/hooks/use-modal-store";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "./ui/use-toast";
@@ -34,7 +34,7 @@ interface StoreSwitcherProps extends PopoverTriggerProps {
 }
 
 const StoreSwitcher = ({ className, items = [] }: StoreSwitcherProps) => {
-  const storeModal = useStoreModal();
+  const { onOpen } = useModal();
   const params = useParams();
   const router = useRouter();
 
@@ -114,7 +114,7 @@ const StoreSwitcher = ({ className, items = [] }: StoreSwitcherProps) => {
                 className="text-sm cursor-pointer"
                 onSelect={() => {
                   setOpen(false);
-                  storeModal.onOpen();
+                  onOpen("CREATE_STORE");
                 }}
               >
                 <PlusCircleIcon className="mr-2 h-5 w-5" />

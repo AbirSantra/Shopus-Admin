@@ -1,6 +1,6 @@
 "use client";
 
-import { useStoreModal } from "@/hooks/use-store-modal";
+import { useModal } from "@/hooks/use-modal-store";
 import { Modal } from "../ui/modal";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
@@ -25,7 +25,8 @@ const formValidation = z.object({
 });
 
 export const StoreModal = () => {
-  const storeModal = useStoreModal();
+  const { isOpen, onClose, type } = useModal();
+  const isModalOpen = isOpen && type === "CREATE_STORE";
 
   const [loading, setLoading] = useState(false);
 
@@ -60,8 +61,8 @@ export const StoreModal = () => {
     <Modal
       title="Create your store"
       description="Add a new store to start selling"
-      isOpen={storeModal.isOpen}
-      onClose={storeModal.onClose}
+      isOpen={isModalOpen}
+      onClose={onClose}
     >
       <div>
         <div className="space-y-4 py-2">
@@ -88,7 +89,7 @@ export const StoreModal = () => {
               <div className="pt-6 space-x-2 flex items-center justify-end w-full">
                 <Button
                   variant={"outline"}
-                  onClick={storeModal.onClose}
+                  onClick={onClose}
                   disabled={loading}
                 >
                   Cancel
