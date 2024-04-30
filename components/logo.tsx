@@ -5,32 +5,26 @@ import LogoImg from "@/public/octopus.png";
 
 interface LogoProps {
   className?: string;
-  logoHeight?: number;
-  logoWidth?: number;
+  logoClassName?: string;
   iconOnly?: boolean;
 }
 
 export default function Logo({
   className,
-  logoHeight = 32,
-  logoWidth = 32,
+  logoClassName,
   iconOnly,
 }: LogoProps) {
   return (
     <Link
       href={"/"}
       className={cn(
-        "cursor-pointer font-bold text-xl flex items-center gap-2",
+        "cursor-pointer font-bold text-xl flex items-center justify-center gap-2",
         className
       )}
     >
-      <Image
-        src={LogoImg}
-        alt="shopus-logo"
-        height={logoHeight}
-        width={logoWidth}
-        className="shrink-0"
-      />
+      <div className={cn("", logoClassName)}>
+        <Image src={LogoImg} alt="shopus-logo" />
+      </div>
       {!iconOnly && <span>Shopus</span>}
     </Link>
   );
