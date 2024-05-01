@@ -7,7 +7,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex h-screen w-full text-slate-900">
       <section className="flex flex-[2] w-full h-full flex-col justify-between p-8">
-        <Logo />
+        <Logo logoClassName="w-8 h-8" className="self-start" />
         <div className="w-full flex justify-center items-center">
           {children}
         </div>

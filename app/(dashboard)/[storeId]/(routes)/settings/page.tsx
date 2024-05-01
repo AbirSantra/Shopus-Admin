@@ -1,4 +1,5 @@
-import SettingsForm from "@/components/settings-form";
+import SettingsForm from "@/components/settings/settings-form";
+import { Heading } from "@/components/ui/heading";
 import prismadb from "@/lib/prismadb";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
@@ -28,10 +29,9 @@ const SettingsPage = async ({ params }: SettingPageProps) => {
   }
 
   return (
-    <div className="flex-col">
-      <div className="flex-1 space-y-4 p-8 pt-6">
-        <SettingsForm initialData={store} />
-      </div>
+    <div className="max-w-screen-xl space-y-6 p-8">
+      <Heading title="Settings" description="Manage your store settings here" />
+      <SettingsForm initialData={store} />
     </div>
   );
 };
