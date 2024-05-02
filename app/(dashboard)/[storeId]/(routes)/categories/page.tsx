@@ -26,7 +26,7 @@ const CategoriesPage = async ({ params }: { params: { storeId: string } }) => {
   }));
 
   return (
-    <div className="flex-1 space-y-6 p-8">
+    <div className="flex-1">
       <CategoryHeader />
       <CategoryClient data={formattedCategories} />
     </div>
