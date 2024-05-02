@@ -12,13 +12,10 @@ interface SettingsFormProps {
 
 const SettingsForm = ({ initialData }: SettingsFormProps) => {
   return (
-    <div className="space-y-12">
+    <div className="space-y-6 max-w-screen-lg mx-auto p-8">
       <StoreNameForm initialData={initialData} />
       {/* <Separator /> */}
-      <div className="space-y-6">
-        <Subheading title="Danger Zone" description="Tread carefully" />
-        <StoreDeleteForm initialData={initialData} />
-      </div>
+      <StoreDeleteForm initialData={initialData} />
     </div>
   );
 };
