@@ -1,5 +1,7 @@
-import CategoryClient from "@/components/category-client";
-import { CategoryColumn } from "@/components/category-columns";
+import CategoryClient from "@/components/categories/category-client";
+import { CategoryColumn } from "@/components/categories/category-columns";
+import CategoryHeader from "@/components/categories/category-header";
+import { Heading } from "@/components/ui/heading";
 import prismadb from "@/lib/prismadb";
 import { format } from "date-fns";
 
@@ -24,10 +26,9 @@ const CategoriesPage = async ({ params }: { params: { storeId: string } }) => {
   }));
 
   return (
-    <div className="flex-col">
-      <div className="flex-1 space-y-4 p-8 pt-6">
-        <CategoryClient data={formattedCategories} />
-      </div>
+    <div className="flex-1 space-y-6 p-8">
+      <CategoryHeader />
+      <CategoryClient data={formattedCategories} />
     </div>
   );
 };

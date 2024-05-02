@@ -1,4 +1,4 @@
-import CategoryForm from "@/components/category-form";
+import CategoryForm from "@/components/categories/category-form";
 import prismadb from "@/lib/prismadb";
 
 const CategoryPage = async ({

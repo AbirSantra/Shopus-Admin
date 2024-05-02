@@ -2,10 +2,10 @@
 
 import * as z from "zod";
 import { Billboard, Category } from "@prisma/client";
-import { Heading } from "./ui/heading";
-import { Button } from "./ui/button";
+import { Heading } from "../ui/heading";
+import { Button } from "../ui/button";
 import { TrashIcon } from "lucide-react";
-import { Separator } from "./ui/separator";
+import { Separator } from "../ui/separator";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
@@ -16,19 +16,19 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form";
-import { Input } from "./ui/input";
+} from "../ui/form";
+import { Input } from "../ui/input";
 import axios, { AxiosError } from "axios";
-import { toast } from "./ui/use-toast";
+import { toast } from "../ui/use-toast";
 import { useParams, useRouter } from "next/navigation";
-import { AlertModal } from "./modals/alert-modal";
+import { AlertModal } from "../modals/alert-modal";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select";
+} from "../ui/select";
 
 const formValidation = z.object({
   name: z.string().min(1, "Category Name cannot be empty"),
