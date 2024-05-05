@@ -7,7 +7,8 @@ import { PlusIcon } from "lucide-react";
 import { useModal } from "@/hooks/use-modal-store";
 
 const CategoryHeader = () => {
-  const { onOpen } = useModal();
+  const router = useRouter();
+  const params = useParams();
 
   return (
     <div className="flex items-center justify-between p-6 border-b">
@@ -15,7 +16,7 @@ const CategoryHeader = () => {
         title="Categories"
         description="Manage your product categories here"
       />
-      <Button onClick={() => onOpen("ADD_CATEGORY")}>
+      <Button onClick={() => router.push(`/${params.storeId}/categories/new`)}>
         <PlusIcon className="mr-2 h-4 w-4" />
         Add New Category
       </Button>

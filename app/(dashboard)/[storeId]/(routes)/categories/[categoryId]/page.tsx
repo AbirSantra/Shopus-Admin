@@ -1,4 +1,5 @@
 import CategoryForm from "@/components/categories/category-form";
+import CategoryPageHeader from "@/components/categories/category-page-header";
 import prismadb from "@/lib/prismadb";
 
 const CategoryPage = async ({
@@ -19,10 +20,9 @@ const CategoryPage = async ({
   });
 
   return (
-    <div className="flex-col">
-      <div className="flex-1 space-y-4 p-8 pt-6">
-        <CategoryForm initialData={category} billboards={billboards} />
-      </div>
+    <div className="flex-1">
+      <CategoryPageHeader initialData={category} />
+      <CategoryForm initialData={category} billboards={billboards} />
     </div>
   );
 };

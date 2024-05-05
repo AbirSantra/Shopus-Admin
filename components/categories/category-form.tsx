@@ -131,22 +131,6 @@ const CategoryForm = ({ initialData, billboards }: CategoryFormProps) => {
         onConfirm={onDelete}
         loading={loading}
       />
-      <div className="flex items-center justify-between">
-        <Heading title={title} description={description} />
-        {initialData && (
-          <Button
-            variant={"default"}
-            size={"sm"}
-            onClick={() => {
-              setOpen(true);
-            }}
-            disabled={loading}
-          >
-            <TrashIcon className="h-4 w-4" />
-          </Button>
-        )}
-      </div>
-      <Separator />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
