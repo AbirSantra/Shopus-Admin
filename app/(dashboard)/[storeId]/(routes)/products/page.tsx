@@ -1,5 +1,6 @@
-import ProductClient from "@/components/product-client";
-import { ProductColumn } from "@/components/product-columns";
+import ProductClient from "@/components/products/product-client";
+import { ProductColumn } from "@/components/products/product-columns";
+import ProductHeader from "@/components/products/product-header";
 import prismadb from "@/lib/prismadb";
 import { formatter } from "@/lib/utils";
 import { format } from "date-fns";
@@ -28,10 +29,9 @@ const ProductsPage = async ({ params }: { params: { storeId: string } }) => {
   }));
 
   return (
-    <div className="flex-col">
-      <div className="flex-1 space-y-4 p-8 pt-6">
-        <ProductClient data={formattedProducts} />
-      </div>
+    <div className="flex-1">
+      <ProductHeader />
+      <ProductClient data={formattedProducts} />
     </div>
   );
 };

@@ -2,10 +2,10 @@
 
 import * as z from "zod";
 import { Category, Image, Product } from "@prisma/client";
-import { Heading } from "./ui/heading";
-import { Button } from "./ui/button";
+import { Heading } from "../ui/heading";
+import { Button } from "../ui/button";
 import { TrashIcon } from "lucide-react";
-import { Separator } from "./ui/separator";
+import { Separator } from "../ui/separator";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
@@ -17,21 +17,21 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form";
-import { Input } from "./ui/input";
+} from "../ui/form";
+import { Input } from "../ui/input";
 import axios, { AxiosError } from "axios";
-import { toast } from "./ui/use-toast";
+import { toast } from "../ui/use-toast";
 import { useParams, useRouter } from "next/navigation";
-import { AlertModal } from "./modals/alert-modal";
-import ImageUpload from "./ui/image-upload";
+import { AlertModal } from "../modals/alert-modal";
+import ImageUpload from "../ui/image-upload";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select";
-import { Checkbox } from "./ui/checkbox";
+} from "../ui/select";
+import { Checkbox } from "../ui/checkbox";
 
 const formValidation = z.object({
   name: z.string().min(1, "Product Name cannot be empty"),
@@ -142,29 +142,13 @@ const ProductForm = ({ initialData, categories }: ProductFormProps) => {
   };
 
   return (
-    <>
+    <div className="max-w-screen-lg mx-auto p-8">
       <AlertModal
         isOpen={open}
         onClose={() => setOpen(false)}
         onConfirm={onDelete}
         loading={loading}
       />
-      <div className="flex items-center justify-between">
-        <Heading title={title} description={description} />
-        {initialData && (
-          <Button
-            variant={"default"}
-            size={"sm"}
-            onClick={() => {
-              setOpen(true);
-            }}
-            disabled={loading}
-          >
-            <TrashIcon className="h-4 w-4" />
-          </Button>
-        )}
-      </div>
-      <Separator />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -194,7 +178,7 @@ const ProductForm = ({ initialData, categories }: ProductFormProps) => {
               </FormItem>
             )}
           />
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid gap-8">
             <FormField
               control={form.control}
               name="name"
@@ -305,12 +289,24 @@ const ProductForm = ({ initialData, categories }: ProductFormProps) => {
               )}
             />
           </div>
-          <Button variant={"default"} disabled={loading} type="submit">
-            {actionLabel}
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button
+              variant={"outline"}
+              disabled={loading}
+              type="button"
+              onClick={() => {
+                setOpen(true);
+              }}
+            >
+              Delete
+            </Button>
+            <Button variant={"default"} disabled={loading} type="submit">
+              {actionLabel}
+            </Button>
+          </div>
         </form>
       </Form>
-    </>
+    </div>
   );
 };
 export default ProductForm;

@@ -6,19 +6,19 @@ import {
   MoreHorizontalIcon,
   TrashIcon,
 } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { toast } from "./ui/use-toast";
+} from "../ui/dropdown-menu";
+import { toast } from "../ui/use-toast";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import axios from "axios";
-import { AlertModal } from "./modals/alert-modal";
+import { AlertModal } from "../modals/alert-modal";
 import { ProductColumn } from "./product-columns";
 
 interface ProductCellActionProps {
