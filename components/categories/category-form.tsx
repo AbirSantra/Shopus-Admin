@@ -124,7 +124,7 @@ const CategoryForm = ({ initialData, billboards }: CategoryFormProps) => {
   };
 
   return (
-    <>
+    <div className="max-w-screen-lg mx-auto p-8">
       <AlertModal
         isOpen={open}
         onClose={() => setOpen(false)}
@@ -136,7 +136,7 @@ const CategoryForm = ({ initialData, billboards }: CategoryFormProps) => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-8 w-full"
         >
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid gap-8">
             <FormField
               control={form.control}
               name="name"
@@ -188,12 +188,24 @@ const CategoryForm = ({ initialData, billboards }: CategoryFormProps) => {
               )}
             />
           </div>
-          <Button variant={"default"} disabled={loading} type="submit">
-            {actionLabel}
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button
+              variant={"outline"}
+              disabled={loading}
+              type="button"
+              onClick={() => {
+                setOpen(true);
+              }}
+            >
+              Delete
+            </Button>
+            <Button variant={"default"} disabled={loading} type="submit">
+              {actionLabel}
+            </Button>
+          </div>
         </form>
       </Form>
-    </>
+    </div>
   );
 };
 export default CategoryForm;
