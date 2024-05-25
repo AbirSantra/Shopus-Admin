@@ -1,4 +1,5 @@
-import BillboardForm from "@/components/billboard-form";
+import BillboardForm from "@/components/billboards/billboard-form";
+import BillboardPageHeader from "@/components/billboards/billboard-page-header";
 import prismadb from "@/lib/prismadb";
 
 const BillboardPage = async ({
@@ -13,10 +14,9 @@ const BillboardPage = async ({
   });
 
   return (
-    <div className="flex-col">
-      <div className="flex-1 space-y-4 p-8 pt-6">
-        <BillboardForm initialData={billboard} />
-      </div>
+    <div className="flex-1">
+      <BillboardPageHeader initialData={billboard} />
+      <BillboardForm initialData={billboard} />
     </div>
   );
 };

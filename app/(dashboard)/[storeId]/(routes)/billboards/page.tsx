@@ -1,5 +1,6 @@
-import BillboardClient from "@/components/billboard-client";
-import { BillboardColumns } from "@/components/billboard-columns";
+import BillboardClient from "@/components/billboards/billboard-client";
+import { BillboardColumns } from "@/components/billboards/billboard-columns";
+import BillboardHeader from "@/components/billboards/billboard-header";
 import prismadb from "@/lib/prismadb";
 import { format } from "date-fns";
 
@@ -20,10 +21,9 @@ const BillboardsPage = async ({ params }: { params: { storeId: string } }) => {
   }));
 
   return (
-    <div className="flex-col">
-      <div className="flex-1 space-y-4 p-8 pt-6">
-        <BillboardClient data={formattedBillboards} />
-      </div>
+    <div className="flex-1">
+      <BillboardHeader />
+      <BillboardClient data={formattedBillboards} />
     </div>
   );
 };
