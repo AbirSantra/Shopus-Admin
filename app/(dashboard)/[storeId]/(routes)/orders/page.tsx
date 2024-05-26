@@ -1,5 +1,6 @@
-import OrderClient from "@/components/order-client";
-import { OrderColumns } from "@/components/order-column";
+import OrderClient from "@/components/orders/order-client";
+import { OrderColumns } from "@/components/orders/order-column";
+import OrderHeader from "@/components/orders/order-header";
 import prismadb from "@/lib/prismadb";
 import { formatter } from "@/lib/utils";
 import { format } from "date-fns";
@@ -38,10 +39,9 @@ const OrdersPage = async ({ params }: { params: { storeId: string } }) => {
   }));
 
   return (
-    <div className="flex-col">
-      <div className="flex-1 space-y-4 p-8 pt-6">
-        <OrderClient data={formattedOrders} />
-      </div>
+    <div className="flex-1">
+      <OrderHeader />
+      <OrderClient data={formattedOrders} />
     </div>
   );
 };

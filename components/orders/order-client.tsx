@@ -1,9 +1,9 @@
 "use client";
 
-import { Heading } from "./ui/heading";
-import { Separator } from "./ui/separator";
+import { Heading } from "../ui/heading";
+import { Separator } from "../ui/separator";
 import { useParams, useRouter } from "next/navigation";
-import { DataTable } from "./ui/data-table";
+import { DataTable } from "../ui/data-table";
 import { columns, OrderColumns } from "./order-column";
 
 interface OrderClientProps {
@@ -15,14 +15,9 @@ const OrderClient = ({ data }: OrderClientProps) => {
   const params = useParams();
 
   return (
-    <>
-      <Heading
-        title={`Orders (${data.length})`}
-        description="Manage orders for your store"
-      />
-      <Separator />
+    <div className="p-6 max-w-screen-xl mx-auto">
       <DataTable columns={columns} data={data} searchKey="products" />
-    </>
+    </div>
   );
 };
 export default OrderClient;
