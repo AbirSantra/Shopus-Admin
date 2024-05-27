@@ -13,6 +13,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum WarrantyStatus {
+  Pending
+  Generated
+  Issued
+}
+
 model Store {
   id         String      @id @default(uuid())
   name       String
@@ -23,6 +29,7 @@ model Store {
   orders     Order[]     @relation("StoreToOrder")
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
+  Customer   Customer[]
 }
 
 model Billboard {
@@ -87,8 +94,8 @@ model Order {
   store      Store       @relation("StoreToOrder", fields: [storeId], references: [id])
   orderItems OrderItem[]
   isPaid     Boolean     @default(false)
-  phone      String      @default("")
-  address    String      @default("")
+  customerId String
+  customer   Customer    @relation(fields: [customerId], references: [id])
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
 
@@ -96,12 +103,25 @@ model Order {
 }
 
 model OrderItem {
-  id        String  @id @default(uuid())
-  orderId   String
-  order     Order   @relation(fields: [orderId], references: [id])
-  productId String
-  product   Product @relation(fields: [productId], references: [id])
+  id              String          @id @default(uuid())
+  orderId         String
+  order           Order           @relation(fields: [orderId], references: [id])
+  productId       String
+  product         Product         @relation(fields: [productId], references: [id])
+  includeWarranty Boolean         @default(false)
+  warrantyStatus  WarrantyStatus?
 
   @@index([orderId])
   @@index([productId])
+}
+
+model Customer {
+  id      String  @id @default(uuid())
+  name    String
+  email   String
+  address String
+  phone   String
+  storeId String
+  Order   Order[]
+  Store   Store   @relation(fields: [storeId], references: [id])
 }
