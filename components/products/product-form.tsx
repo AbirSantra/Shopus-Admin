@@ -54,6 +54,7 @@ interface ProductFormProps {
 }
 
 const ProductForm = ({ initialData, categories }: ProductFormProps) => {
+  console.log(initialData);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 

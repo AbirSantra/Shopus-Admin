@@ -16,7 +16,7 @@ const OrderClient = ({ data }: OrderClientProps) => {
 
   return (
     <div className="p-6 max-w-screen-xl mx-auto">
-      <DataTable columns={columns} data={data} searchKey="products" />
+      <DataTable columns={columns} data={data} searchKey="customer" />
     </div>
   );
 };

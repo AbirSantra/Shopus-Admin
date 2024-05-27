@@ -1,4 +1,3 @@
-import BillboardForm from "@/components/billboard-form";
 import ProductForm from "@/components/products/product-form";
 import ProductPageHeader from "@/components/products/product-page-header";
 import prismadb from "@/lib/prismadb";
