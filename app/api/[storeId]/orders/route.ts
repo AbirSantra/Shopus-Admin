@@ -40,7 +40,10 @@ export async function POST(
       return new NextResponse("Unauthorized", { status: 403 });
     }
 
-    const productIds = orderItems.map((item: OrderItem) => item.productId);
+    const productIds = orderItems.map((item: OrderItem) => ({
+      productId: item.productId,
+      includeWarranty: item.includeWarranty,
+    }));
 
     const order = await prismadb.order.create({
       data: {
@@ -48,13 +51,22 @@ export async function POST(
         isPaid: isPaid,
         customerId: customerId,
         orderItems: {
-          create: productIds.map((productId: string) => ({
-            product: {
-              connect: {
-                id: productId,
+          create: productIds.map(
+            ({
+              productId,
+              includeWarranty,
+            }: {
+              productId: string;
+              includeWarranty: boolean;
+            }) => ({
+              product: {
+                connect: {
+                  id: productId,
+                },
               },
-            },
-          })),
+              includeWarranty: includeWarranty,
+            })
+          ),
         },
       },
     });

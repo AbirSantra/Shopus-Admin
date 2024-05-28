@@ -109,7 +109,7 @@ model OrderItem {
   productId       String
   product         Product         @relation(fields: [productId], references: [id])
   includeWarranty Boolean         @default(false)
-  warrantyStatus  WarrantyStatus?
+  warrantyStatus  WarrantyStatus? @default(Pending)
 
   @@index([orderId])
   @@index([productId])
