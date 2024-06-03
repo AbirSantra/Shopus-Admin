@@ -20,6 +20,8 @@ import { useState } from "react";
 import axios from "axios";
 import { AlertModal } from "../modals/alert-modal";
 import { WarrantyColumn } from "./warranty-columns";
+import { ethers } from "ethers";
+import { useContractStore } from "@/hooks/use-wallet-store";
 
 interface WarrantyCellActionProps {
   data: WarrantyColumn;
@@ -28,6 +30,17 @@ interface WarrantyCellActionProps {
 export const WarrantyCellAction = ({ data }: WarrantyCellActionProps) => {
   const router = useRouter();
   const params = useParams();
+  const {
+    connectWallet,
+    account,
+    contract,
+    connectContract,
+    contractAddress,
+    abi,
+    disconnect,
+    provider,
+    signer,
+  } = useContractStore();
 
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
@@ -61,6 +74,35 @@ export const WarrantyCellAction = ({ data }: WarrantyCellActionProps) => {
     }
   };
 
+  /* 
+  orderId: string;
+  storeId: string;
+  customerId: string;
+  customerName: string;
+  orderedAt: string;
+  productId: string;
+  productName: string;
+  price: string;
+  */
+
+  console.log(contract);
+
+  const handleMintWarranty = async () => {
+    await connectWallet();
+    await connectContract(contractAddress, abi);
+    const productName = "Product A";
+    const purchaseDate = Math.floor(Date.now() / 1000); // current timestamp in seconds
+    const expirationDate = purchaseDate + 365 * 24 * 60 * 60; // 1 year later
+    const tx = await contract.mintWarranty(
+      productName,
+      purchaseDate,
+      expirationDate
+    );
+
+    // Wait for the transaction to be mined
+    await tx.wait();
+  };
+
   return (
     <>
       <AlertModal
@@ -82,11 +124,7 @@ export const WarrantyCellAction = ({ data }: WarrantyCellActionProps) => {
             <CopyIcon className="mr-2 h-4 w-4" /> Copy ID
           </DropdownMenuItem>
           {data.warrantyStatus === "Pending" && (
-            <DropdownMenuItem
-              onClick={() =>
-                router.push(`/${params.storeId}/products/${data.id}`)
-              }
-            >
+            <DropdownMenuItem onClick={() => handleMintWarranty()}>
               <EditIcon className="mr-2 h-4 w-4" /> Mint Warranty
             </DropdownMenuItem>
           )}
