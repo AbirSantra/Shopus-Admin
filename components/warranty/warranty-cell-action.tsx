@@ -85,22 +85,24 @@ export const WarrantyCellAction = ({ data }: WarrantyCellActionProps) => {
   price: string;
   */
 
-  console.log(contract);
-
   const handleMintWarranty = async () => {
-    await connectWallet();
-    await connectContract(contractAddress, abi);
-    const productName = "Product A";
-    const purchaseDate = Math.floor(Date.now() / 1000); // current timestamp in seconds
-    const expirationDate = purchaseDate + 365 * 24 * 60 * 60; // 1 year later
     const tx = await contract.mintWarranty(
-      productName,
-      purchaseDate,
-      expirationDate
+      data.orderId,
+      params.storeId,
+      "0003",
+      "Customer A",
+      "27th May 2024",
+      "0004",
+      data.productName,
+      "1600"
     );
 
     // Wait for the transaction to be mined
     await tx.wait();
+    toast({
+      title: "Product Warranty Minted successfully!",
+      description: "Your product warranty has been minted.",
+    });
   };
 
   return (

@@ -37,6 +37,54 @@ export const useContractStore = create<OrderContractStoreState>((set) => ({
   contract: null,
   abi: [
     {
+      inputs: [
+        {
+          internalType: "string",
+          name: "_orderId",
+          type: "string",
+        },
+        {
+          internalType: "string",
+          name: "_storeId",
+          type: "string",
+        },
+        {
+          internalType: "string",
+          name: "_customerId",
+          type: "string",
+        },
+        {
+          internalType: "string",
+          name: "_customerName",
+          type: "string",
+        },
+        {
+          internalType: "string",
+          name: "_orderedAt",
+          type: "string",
+        },
+        {
+          internalType: "string",
+          name: "_productId",
+          type: "string",
+        },
+        {
+          internalType: "string",
+          name: "_productName",
+          type: "string",
+        },
+        {
+          internalType: "string",
+          name: "_price",
+          type: "string",
+        },
+      ],
+      name: "mintWarranty",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
       anonymous: false,
       inputs: [
         {
@@ -47,9 +95,39 @@ export const useContractStore = create<OrderContractStoreState>((set) => ({
         },
         {
           indexed: false,
-          internalType: "address",
-          name: "owner",
-          type: "address",
+          internalType: "string",
+          name: "orderId",
+          type: "string",
+        },
+        {
+          indexed: false,
+          internalType: "string",
+          name: "storeId",
+          type: "string",
+        },
+        {
+          indexed: false,
+          internalType: "string",
+          name: "customerId",
+          type: "string",
+        },
+        {
+          indexed: false,
+          internalType: "string",
+          name: "customerName",
+          type: "string",
+        },
+        {
+          indexed: false,
+          internalType: "string",
+          name: "orderedAt",
+          type: "string",
+        },
+        {
+          indexed: false,
+          internalType: "string",
+          name: "productId",
+          type: "string",
         },
         {
           indexed: false,
@@ -59,15 +137,9 @@ export const useContractStore = create<OrderContractStoreState>((set) => ({
         },
         {
           indexed: false,
-          internalType: "uint256",
-          name: "purchaseDate",
-          type: "uint256",
-        },
-        {
-          indexed: false,
-          internalType: "uint256",
-          name: "expirationDate",
-          type: "uint256",
+          internalType: "string",
+          name: "price",
+          type: "string",
         },
       ],
       name: "WarrantyMinted",
@@ -86,14 +158,34 @@ export const useContractStore = create<OrderContractStoreState>((set) => ({
         {
           components: [
             {
-              internalType: "uint256",
-              name: "id",
-              type: "uint256",
+              internalType: "string",
+              name: "orderId",
+              type: "string",
             },
             {
-              internalType: "address",
-              name: "owner",
-              type: "address",
+              internalType: "string",
+              name: "storeId",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "customerId",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "customerName",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "orderedAt",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "productId",
+              type: "string",
             },
             {
               internalType: "string",
@@ -101,14 +193,9 @@ export const useContractStore = create<OrderContractStoreState>((set) => ({
               type: "string",
             },
             {
-              internalType: "uint256",
-              name: "purchaseDate",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "expirationDate",
-              type: "uint256",
+              internalType: "string",
+              name: "price",
+              type: "string",
             },
           ],
           internalType: "struct ProductWarranty.Warranty",
@@ -117,29 +204,6 @@ export const useContractStore = create<OrderContractStoreState>((set) => ({
         },
       ],
       stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "string",
-          name: "_productName",
-          type: "string",
-        },
-        {
-          internalType: "uint256",
-          name: "_purchaseDate",
-          type: "uint256",
-        },
-        {
-          internalType: "uint256",
-          name: "_expirationDate",
-          type: "uint256",
-        },
-      ],
-      name: "mintWarranty",
-      outputs: [],
-      stateMutability: "nonpayable",
       type: "function",
     },
     {
@@ -166,14 +230,34 @@ export const useContractStore = create<OrderContractStoreState>((set) => ({
       name: "warranties",
       outputs: [
         {
-          internalType: "uint256",
-          name: "id",
-          type: "uint256",
+          internalType: "string",
+          name: "orderId",
+          type: "string",
         },
         {
-          internalType: "address",
-          name: "owner",
-          type: "address",
+          internalType: "string",
+          name: "storeId",
+          type: "string",
+        },
+        {
+          internalType: "string",
+          name: "customerId",
+          type: "string",
+        },
+        {
+          internalType: "string",
+          name: "customerName",
+          type: "string",
+        },
+        {
+          internalType: "string",
+          name: "orderedAt",
+          type: "string",
+        },
+        {
+          internalType: "string",
+          name: "productId",
+          type: "string",
         },
         {
           internalType: "string",
@@ -181,21 +265,16 @@ export const useContractStore = create<OrderContractStoreState>((set) => ({
           type: "string",
         },
         {
-          internalType: "uint256",
-          name: "purchaseDate",
-          type: "uint256",
-        },
-        {
-          internalType: "uint256",
-          name: "expirationDate",
-          type: "uint256",
+          internalType: "string",
+          name: "price",
+          type: "string",
         },
       ],
       stateMutability: "view",
       type: "function",
     },
   ],
-  contractAddress: "0xa7973e508162cae8a24d5b6aa12a1a95b7700811",
+  contractAddress: "0x2f1cfc1ef0176f61db0ef9ccc7feb7e10ea694b1",
 
   connectWallet: async () => {
     try {
